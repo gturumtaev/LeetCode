@@ -39,11 +39,6 @@ public class Main {
         for (int i = 0; i < nums.length; i++) {
             set.add(nums[i]);
         }
-        return nums.length != set.size();
-//        if (nums.length != set.size()) {
-//            return true;
-//        } else {
-//            return false;
-//        }
+        return set.size() != nums.length;
     }
 }
