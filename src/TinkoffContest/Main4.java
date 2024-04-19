@@ -37,48 +37,50 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main4 {
+
     public static void main(String[] args) {
+        long sumDifference = 0;
         Scanner scanner = new Scanner(System.in);
-        long suDifference = 0;
         int n = scanner.nextInt();
         int k = scanner.nextInt();
-        long[] temp = new long[n];
-        for (int i = 0; i < temp.length; i++) {
-            temp[i] = scanner.nextInt();
+        long[] array = new long[n];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = scanner.nextInt();
         }
         for (int i = 0; i < k; i++) {
-            suDifference += changeNumber(temp);
-
+            sumDifference += changeNumber(array);
         }
-        System.out.println(suDifference);
+        System.out.println(sumDifference);
     }
 
-    public static long changeDigitSum(long number) {
+    public static long changeDigitSum (long digit) {
         long divisor = 1;
-        while (divisor <= number) {
+        while (divisor < digit) {
             divisor *= 10;
         }
         divisor /= 10;
-        while (divisor > 0){
-            if ((((number / divisor) % 10 ) != 9))
-                return (9 - ( (number / divisor) % 10 )) * divisor;
+        while (divisor > 0) {
+            if (digit / divisor % 10 != 9) {
+                return (((9 - digit / divisor % 10) * divisor));
+            }
             divisor /= 10;
         }
         return 0;
     }
 
-    public static long changeNumber(long[] arr){
-        int maxIndex = 0; // n <= 1000
-        long max = 0; // max <= 9e10
-        for (int i = 0; i < arr.length; i++) {
-            long tmp = changeDigitSum(arr[i]); // tmp <= 9e10
-            if (tmp > max ){
-                max = tmp;
+    public static long changeNumber (long[] array) {
+        int maxIndex = 0;
+        long max = 0;
+        for (int i = 0; i < array.length; i++) {
+            long temp = changeDigitSum(array[i]);
+            if (temp > max) {
+                max = temp;
                 maxIndex = i;
             }
-
         }
-        arr[maxIndex] += max;
+        array[maxIndex] += max;
         return max;
     }
+
+
 }
