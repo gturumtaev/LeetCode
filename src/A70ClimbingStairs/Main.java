@@ -40,5 +40,6 @@ public class Main {
             array[i] = array[i - 1] + array[i - 2];
         }
         return array[n];
+
     }
 }
